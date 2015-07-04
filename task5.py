@@ -7,21 +7,22 @@ def myfunc(y):
 		return 0.0
 
 try:
-	infilename = sys.argv [1]
-	outfilename = sys.argv [2]
+	outfilename = sys.argv [1]
 except:
-	print "Usage: ", sys.argv[0], " infile outfile"
+	print "Usage: ", sys.argv[0], " outfile pairs "
 	sys.exit(1)
 
-ifile = open(infilename, 'r')
 ofile = open(outfilename, 'w')
 
-for line in ifile:
-	pair = line.split()
-	x = float(pair[0])
-	y = float(pair[1])
+args = sys.argv[2:]
+i = 0
+length = len(args)
+while i < length:
+	x = float(args[i])
+	y = float(args[i + 1])
+	i += 2
 	fy = myfunc(y)
 	ofile.write('%g %12.5e \n' % (x, fy))
 
-ifile.close()
 ofile.close()
+
